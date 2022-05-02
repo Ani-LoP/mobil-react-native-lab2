@@ -1,8 +1,9 @@
 import {Button, View, Text, StyleSheet} from "react-native";
-import GoodsGrid from "../components/GoodsGrid/GoodsGrid";
-import BasketGood from "../components/Basket/BasketGood";
-import Good from "../components/GoodsGrid/Good";
-import BasketSum from "../components/Basket/BasketSum";
+import GoodsGrid from "../../components/GoodsGrid/GoodsGrid";
+import BasketGood from "../../components/Basket/BasketGood";
+import Good from "../../components/GoodsGrid/Good";
+import BasketSum from "../../components/Basket/BasketSum";
+import {BoxShadow} from "react-native-shadow";
 
 export default function Basket({navigation}) {
     let goods = [
@@ -24,7 +25,18 @@ export default function Basket({navigation}) {
 
     return (
         <View style={styles.containerGood}>
-            <BasketSum />
+            <BoxShadow setting={shadowOpt}>
+                <View style={styles2.container}>
+                    <View style={styles2.info}>
+                        <Text>Общая сумма</Text>
+                        <Text style={styles2.sum} numberOfLines={2}>25320</Text>
+                        <Text>рублей</Text>
+                    </View>
+                    <Button style={{height: '80%'}} title={'Перейти к оплате'} onPress={
+                        ()=>navigation.navigate('Оплата')
+                    }/>
+                </View>
+            </BoxShadow>
             {goods.map(el => <BasketGood key={el.id} good={el}/>)}
         </View>
     );
@@ -37,4 +49,64 @@ const styles = StyleSheet.create({
         alignItems: "center",
         //marginHorizontal: 20,
     },
+})
+
+const containerWidth = 320;
+const containerHeight = 120;
+
+const shadowOpt = {
+    width: containerWidth,
+    height: containerHeight,
+    color: "#000",
+    border: 10,
+    radius: 3,
+    opacity: 0.1,
+    x: 8,
+    y: 8,
+    style: {marginVertical: 5}
+}
+
+const styles2 = StyleSheet.create({
+    outerContainer: {
+        margin: 5
+    },
+    container: {
+        width: containerWidth,
+        height: containerHeight,
+        backgroundColor: 'white',
+        borderRadius: 6,
+        //margin: 15,
+        //shadowOffset: {width: 8, height: 8,},
+        //shadowColor: 'rgba(0, 0, 0, 0.25)',
+        //shadowOpacity: 1.0,
+        //shadowRadius: 10,
+        justifyContent: "space-between",
+        paddingHorizontal: 15,
+        flexDirection: 'row',
+        alignItems: 'center'
+        /*box-shadow: '2px 5px 8px 1px rgba(0, 0, 0, 0.25)'*/
+    },
+    mainImageContainer: {
+        width: 80,
+        height: 70,
+        backgroundColor: 'pink',
+        marginRight: 10
+    },
+    mainImage: {
+        height: 70,
+        //width: 'auto',
+    },
+    content: {
+        width: 100,
+        height: 150,
+        backgroundColor: 'yellow'
+    },
+    sum: {
+        color: '#535050',
+        fontWeight: '700',
+        fontSize: 32
+    },
+    info: {
+        flex: 3
+    }
 })

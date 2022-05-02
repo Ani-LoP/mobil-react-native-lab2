@@ -1,7 +1,5 @@
 import {Image, StyleSheet, Text, TouchableHighlight, View} from "react-native";
 import {BoxShadow} from 'react-native-shadow'
-import star from '../../assets/icons/icon-star.png'
-import emptyStar from '../../assets/icons/icon-star-empty.png'
 import addToBasketButton from '../../assets/icons/icon-add-to-basket.png'
 import removeFromBasketButton from '../../assets/icons/icon-delete.png'
 import Stars from "../Stars";

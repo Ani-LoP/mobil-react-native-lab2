@@ -1,8 +1,6 @@
-import {Button, View, Text, StyleSheet, Image} from "react-native";
-import Stars from "../components/Stars";
-import back from '../assets/icons/icon-back.png'
-import {Link} from "@react-navigation/native";
-import Review from "../components/Review/Review";
+import {Button, View, Text, StyleSheet, Image, ScrollView} from "react-native";
+import Stars from "../../components/Stars";
+import Review from "../../components/Review/Review";
 
 const reviews = [
     {
@@ -19,15 +17,16 @@ const reviews = [
     }
 ]
 
-export default function GoodMainPage({navigation, initialProps}) {
-
+export default function GoodMainPage({navigation, route}) {
+    debugger
+    let initialProps = route.params.initialProps
     return (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Text style={[styles.h1, {flex: 4}]}>{initialProps.name}</Text>
-                <View style={{flex: 1}}>
+                {/*<View style={{flex: 1}}>
                     <Image source={back} style={[styles.iconBack]}/>
-                </View>
+                </View>*/}
             </View>
 
             <Image
@@ -41,11 +40,11 @@ export default function GoodMainPage({navigation, initialProps}) {
             <View style={{marginVertical: 20}}>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between', }}>
                     <Text style={styles.h1}>Отзывы</Text>
-                    <Text>Оставить отзыв</Text>
+                    <Text onPress={() => navigation.navigate('Новый отзыв')}>Оставить отзыв</Text>
                 </View>
                 {reviews.map(el => <Review props={el} key={el.id}/>)}
             </View>
-        </View>
+        </ScrollView>
     );
 }
 
@@ -74,5 +73,4 @@ const styles = StyleSheet.create({
         fontSize: 36,
         fontWeight: "bold",
     },
-    h2: {}
 })

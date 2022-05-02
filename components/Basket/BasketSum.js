@@ -10,16 +10,7 @@ const info={
 export default function BasketSum({sum}) {
     return (
         <View style={styles.outerContainer}>
-            <BoxShadow setting={shadowOpt}>
-                <View style={styles.container}>
-                    <View style={styles.info}>
-                        <Text>Общая сумма</Text>
-                        <Text style={styles.sum} numberOfLines={2}>{info.sum}</Text>
-                        <Text>рублей</Text>
-                    </View>
-                    <Button style={{height: '80%'}} title={'Перейти к оплате'}/>
-                </View>
-            </BoxShadow>
+
         </View>
     )
 }
